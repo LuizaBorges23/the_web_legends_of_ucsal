@@ -111,6 +111,8 @@ function iniciarDialogoCoordenador() {
   });
 }
 
+
+
 function mostrarTelaProfessor() {
   // Transição de cena
   document.getElementById("sala-coordenador").style.display = "none";
@@ -121,14 +123,21 @@ function mostrarTelaProfessor() {
 
   // Configura e exibe a caixa de diálogo PADRÃO
   const dialogo = document.getElementById("caixa-dialogo");
-  dialogo.style.display = "flex";
-  document.getElementById("nome-personagem").textContent = "Professor Ronnie";
+  dialogo.style.display = "blox";
+  const nomePersonagem = document.getElementById("nome-personagem");
+  nomePersonagem.textContent = "Professor Ronnie";
+
+  // Opcional: manter estilo do nome igual aos outros, se quiser garantir:
+  nomePersonagem.style.backgroundColor = "#2D3E56";
+  nomePersonagem.style.color = "#fff";
 
   // Texto formatado igual às outras cenas
   const mensagens = [
     `Olá, ${nomeJogador}, vejo que você é o herói escolhido.`,
     "O Mago da Web é mais perigoso do que imaginamos...",
-    "Ele controla os elementos da web como se fossem magia!"
+    "Ele controla os elementos da web como se fossem magia!",
+    "Mas você ainda não está pronto e terá que passar por um treinamento",
+    "Você terá que aprender os *Conhecimentos da Web*"
   ];
 
   let index = 0;
