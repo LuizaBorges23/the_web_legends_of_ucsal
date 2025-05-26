@@ -139,6 +139,9 @@ function mostrarTelaProfessor() {
         index++;
         setTimeout(mostrarProximaMensagem, 1000);
       });
+    } else {
+      // Quando todas as mensagens forem exibidas
+      setTimeout(mostrarTelaLuta, 1000);
     }
   }
 
