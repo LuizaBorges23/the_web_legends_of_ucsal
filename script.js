@@ -147,3 +147,17 @@ function mostrarTelaProfessor() {
 
   mostrarProximaMensagem();
 }
+
+
+function mostrarTelaLuta() {
+  document.getElementById("cenario3").style.display = "none";
+  document.getElementById("caixa-dialogo").style.display = "none";
+
+  const telaLuta = document.getElementById("tela-luta");
+  telaLuta.style.display = "block";
+
+  // Tocar música de luta (se já tiver o áudio)
+  const audioLuta = new Audio("music/battle.mp3");
+  audioLuta.play();
+}
+
