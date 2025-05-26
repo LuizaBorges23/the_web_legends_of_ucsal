@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="the_web_legends_of_ucsal">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/img.zip!/" />
+      <root url="jar://$PROJECT_DIR$/theweblegendsofucsal.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
