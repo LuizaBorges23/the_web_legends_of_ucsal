@@ -143,7 +143,7 @@ function mostrarTelaProfessor() {
       // Quando todas as mensagens forem exibidas
       setTimeout(mostrarTelaLuta, 1000);
     }
-  }
+    }
 
   mostrarProximaMensagem();
 }
