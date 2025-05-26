@@ -33,7 +33,13 @@
     <img id="npc3" src="img/ronnie(npc%203).png" />
   </div>
 
+  <!-- Tela de luta -->
+  <div id="tela-luta" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: url('img/cenario3.png') no-repeat center/cover; position: relative; overflow: hidden; z-index: 9999;">
+    <img id="ronnie-luta" src="img/ronnie_fight(npc3).png" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); width: 400px; height: auto;" />
+    <h1 id="texto-fight" style="color: red; font-size: 80px; font-weight: bold; margin-top: 20px;">FIGHT!</h1>
+  </div>
 
+  <audio id="audio-luta" src="music/battle.mp3"></audio>
 
   <script src="./script.js"></script>
 </body>
