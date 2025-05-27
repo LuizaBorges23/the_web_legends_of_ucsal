@@ -121,12 +121,12 @@ html, body {
     color: #000;
     min-height: 180px;
 
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    display: flex; /* só aqui uma vez */
-  }
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  display: flex; /* só aqui uma vez */
+}
 
 #texto-dialogo {
   margin: 0 auto;
