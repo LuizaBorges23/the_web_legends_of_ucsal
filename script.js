@@ -88,9 +88,9 @@ function iniciarDialogoCoordenador() {
     escreverTextoGradualmente("Hackers vêm invadindo o portal do aluno, a mando do Mago da Web. Só você pode derrotá-lo.", "texto-dialogo", () => {
       escreverTextoGradualmente("Mas tenha cuidado! Ele tem poderes inimagináveis!", "texto-dialogo", () => {
         escreverTextoGradualmente("Você encontrará desafios ao longo do caminho, não confie em ninguém. Conto com você, herói.", "texto-dialogo", () => {
-      
-});
-  });
-});
+
+        });
+      });
+    });
   });
 }
