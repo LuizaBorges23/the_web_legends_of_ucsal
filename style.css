@@ -128,76 +128,76 @@ html, body {
     display: flex; /* só aqui uma vez */
   }
 
-  #texto-dialogo {
-    margin: 0 auto;
-    padding: 0;
-    text-align: center;
-    max-width: 80%;
-    font-size: 20px;
-    line-height: 1.4;
-  }
-  
-  #nome-personagem {
-    font-weight: bold;
-    color: #fff;
-    background-color: #2D3E56;
-    display: inline-block;
-    padding: 5px 10px;
-    margin-bottom: 5px;
-    font-size: 22px;
-    border-radius: 5px;
-    align-self: flex-start;
-  }
-  
-  #nome-jogador {
-    position: fixed;       
-    top: 55%;           
-    left: 50%;
-    transform: translate(-50%, -50%);
-    
-    width: 300px;
-    height: 40px;
-    background-color: #ABCFE5;
-    color: black;
-    border: 3px solid #2D3E56;
-    border-radius: 100px;
-    
-    font-family: "JetBrains Mono", monospace;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: normal;
-    
-    padding: 5px 15px;
-    box-sizing: border-box;
-  
-    display: none;
-    z-index: 20;   
-  }
-  
-  #botao-confirmar {
-    position: fixed;
-    top: calc(50% + 60px);
-    left: 50%;
-    transform: translateX(-50%);
-    
-    padding: 10px 10px;
-    height: 45px;
-    width: 150px;
-    
-    background-color: #2D3E56;
-    color: white;
-    border: 3px solid #2D3E56;
-    border-radius: 100px;
-    
-    font-family: "JetBrains Mono", monospace;
-    font-size: 20px;
-    font-weight: 400;
-    cursor: pointer;
-    
-    display: none;
-    z-index: 20;
-  }
-  
+#texto-dialogo {
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+  max-width: 80%;
+  font-size: 20px;
+  line-height: 1.4;
+}
+
+#nome-personagem {
+  font-weight: bold;
+  color: #fff;
+  background-color: #2D3E56;
+  display: inline-block;
+  padding: 5px 10px;
+  margin-bottom: 5px;
+  font-size: 22px;
+  border-radius: 5px;
+  align-self: flex-start;
+}
+
+#nome-jogador {
+  position: fixed;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 300px;
+  height: 40px;
+  background-color: #ABCFE5;
+  color: black;
+  border: 3px solid #2D3E56;
+  border-radius: 100px;
+
+  font-family: "JetBrains Mono", monospace;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: normal;
+
+  padding: 5px 15px;
+  box-sizing: border-box;
+
+  display: none;
+  z-index: 20;
+}
+
+#botao-confirmar {
+  position: fixed;
+  top: calc(50% + 60px);
+  left: 50%;
+  transform: translateX(-50%);
+
+  padding: 10px 10px;
+  height: 45px;
+  width: 150px;
+
+  background-color: #2D3E56;
+  color: white;
+  border: 3px solid #2D3E56;
+  border-radius: 100px;
+
+  font-family: "JetBrains Mono", monospace;
+  font-size: 20px;
+  font-weight: 400;
+  cursor: pointer;
+
+  display: none;
+  z-index: 20;
+}
+
 
   #cenario2 {
   width: 100vw;
