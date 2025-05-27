@@ -83,17 +83,36 @@ function salvarNome() {
 }
 
 function iniciarDialogoCoordenador() {
-  document.getElementById("nome-personagem").textContent = "Coordenador Osbaldo";
-  escreverTextoGradualmente(`Oi, ${nomeJogador}, era você que estávamos aguardando!`, "texto-dialogo", () => {
-    escreverTextoGradualmente("Hackers vêm invadindo o portal do aluno, a mando do Mago da Web. Só você pode derrotá-lo.", "texto-dialogo", () => {
-      escreverTextoGradualmente("Mas tenha cuidado! Ele tem poderes inimagináveis!", "texto-dialogo", () => {
-        escreverTextoGradualmente("Você encontrará desafios ao longo do caminho, não confie em ninguém. Conto com você, herói.", "texto-dialogo", () => {
+  document.getElementById("nome-personagem").textContent = "Coordenador";
 
-        });
-      });
-    });
+  escreverTextoGradualmente(`Oi ${nomeJogador}, estive esperando por você! Precisamos da sua ajuda.`, "texto-dialogo", () => {
+    escreverTextoGradualmente(
+        "Hackers vêm invadindo o portal do aluno, a mando do Mago da Web. Só você pode derrotá-lo.",
+        "texto-dialogo",
+        () => {
+          escreverTextoGradualmente(
+              "Mas tenha cuidado! Ele tem poderes inimagináveis!",
+              "texto-dialogo",
+              () => {
+                escreverTextoGradualmente(
+                    "Você encontrará desafios ao longo do caminho, não confie em ninguém. Conto com você, herói.",
+                    "texto-dialogo",
+                    () => {
+                      // No final do diálogo com o coordenador:
+                      setTimeout(() => {
+                        mostrarTelaProfessor();
+                      }, 2000);
+                    }
+                );
+              }
+          );
+        }
+    );
   });
 }
+
+
+
 function mostrarTelaProfessor() {
   // Transição de cena
   document.getElementById("sala-coordenador").style.display = "none";
@@ -104,14 +123,21 @@ function mostrarTelaProfessor() {
 
   // Configura e exibe a caixa de diálogo PADRÃO
   const dialogo = document.getElementById("caixa-dialogo");
-  dialogo.style.display = "flex";
-  document.getElementById("nome-personagem").textContent = "Professor Ronnie";
+  dialogo.style.display = "blox";
+  const nomePersonagem = document.getElementById("nome-personagem");
+  nomePersonagem.textContent = "Professor Ronnie";
+
+  // Opcional: manter estilo do nome igual aos outros, se quiser garantir:
+  nomePersonagem.style.backgroundColor = "#2D3E56";
+  nomePersonagem.style.color = "#fff";
 
   // Texto formatado igual às outras cenas
   const mensagens = [
     `Olá, ${nomeJogador}, vejo que você é o herói escolhido.`,
     "O Mago da Web é mais perigoso do que imaginamos...",
-    "Ele controla os elementos da web como se fossem magia!"
+    "Ele controla os elementos da web como se fossem magia!",
+    "Mas você ainda não está pronto e terá que passar por um treinamento",
+    "Você terá que aprender os *Conhecimentos da Web*"
   ];
 
   let index = 0;
@@ -126,20 +152,20 @@ function mostrarTelaProfessor() {
       // Quando todas as mensagens forem exibidas
       setTimeout(mostrarTelaLuta, 1000);
     }
-    }
+  }
 
   mostrarProximaMensagem();
-}
 
 
-function mostrarTelaLuta() {
-  document.getElementById("cenario3").style.display = "none";
-  document.getElementById("caixa-dialogo").style.display = "none";
+  function mostrarTelaLuta() {
+    document.getElementById("cenario3").style.display = "none";
+    document.getElementById("caixa-dialogo").style.display = "none";
 
-  const telaLuta = document.getElementById("tela-luta");
-  telaLuta.style.display = "block";
+    const telaLuta = document.getElementById("tela-luta");
+    telaLuta.style.display = "block";
 
-  // Tocar música de luta (se já tiver o áudio)
-  const audioLuta = new Audio("music/battle.mp3");
-  audioLuta.play();
+    // Tocar música de luta (se já tiver o áudio)
+    const audioLuta = new Audio("music/battle.mp3");
+    audioLuta.play();
+  }
 }
