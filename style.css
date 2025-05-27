@@ -1,205 +1,205 @@
 html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-    font-family: 'JetBrains Mono', monospace;
-  }
-  
-  /* Fundo fixo e cobrindo tudo */
-  body {
-    background-image: url('img/cenario1.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 100vh;
-    width: 100vw;
-  }
-  
-  #tela-inicial {
-    position: fixed;
-    top: 0; left: 0;
-    height: 100%;
-    width: 100%;
-    background: rgba(0,0,0,0.5);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    z-index: 10;
-  }
-  
-  h1 {
-    font-family: "JetBrains Mono", monospace;
-    font-size: 48px;
-    font-weight: 700;
-    color: white;
-    -webkit-text-stroke: 3px rgb(19, 14, 63);
-    text-align: center;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-    margin-bottom: 20px;
-    letter-spacing: 2px;
-  }
-  
-  p {
-    text-align: center;
-    padding-top: 50px;
-  }
-  
-  #botao-jogar {
-    width: 250px;
-    height: 70px;
-    background-color: #2D3E56;
-    color: #FFF;
-    border: 1px solid #2D3E56;
-    border-radius: 100px;
-    font-family: "JetBrains Mono", monospace;
-    font-size: 28px;
-    font-weight: 400;
-    line-height: normal;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-  
-  #botao-jogar:hover {
-    background-color: #435a75;
-    color: #e0e0e0;
-  }
-  
-  #legenda-inicial {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-    font-size: 26px; /* corrigido para px */
-    color: white;
-    background: black;
-    padding: 30px 20px;
-    box-sizing: border-box;
-    z-index: 10;
-    font-family: "JetBrains Mono", monospace;
-  }
-  
-  #cenario1 {
-    width: 100vw;
-    height: 100vh;
-    background-image: url('img/cenario1.png');
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  #npc1 {
-    position: absolute;
-    bottom: 10px;
-    left: 40%;
-    cursor: pointer;
-    width: 408px;
-    height: 612px;
-    flex-shrink: 0;
-    aspect-ratio: 2 / 3;
-  }
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  font-family: 'JetBrains Mono', monospace;
+}
 
-  #caixa-dialogo {
-    display: none; /* inicialmente escondido */
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 180px;
-    background-color: #ABCFE5;
-    border-top: 7px solid #2D3E56;
-    padding: 20px;
-    box-sizing: border-box;
-    z-index: 15;
-    font-family: "JetBrains Mono", monospace;
-    font-size: 20px;
-    color: #000;
-    min-height: 180px;
+/* Fundo fixo e cobrindo tudo */
+body {
+  background-image: url('img/cenario1.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100vw;
+}
 
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    display: flex; /* só aqui uma vez */
-  }
+#tela-inicial {
+  position: fixed;
+  top: 0; left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  z-index: 10;
+}
 
-  #texto-dialogo {
-    margin: 0 auto;
-    padding: 0;
-    text-align: center;
-    max-width: 80%;
-    font-size: 20px;
-    line-height: 1.4;
-  }
-  
-  #nome-personagem {
-    font-weight: bold;
-    color: #fff;
-    background-color: #2D3E56;
-    display: inline-block;
-    padding: 5px 10px;
-    margin-bottom: 5px;
-    font-size: 22px;
-    border-radius: 5px;
-    align-self: flex-start;
-  }
-  
-  #nome-jogador {
-    position: fixed;       
-    top: 55%;           
-    left: 50%;
-    transform: translate(-50%, -50%);
-    
-    width: 300px;
-    height: 40px;
-    background-color: #ABCFE5;
-    color: black;
-    border: 3px solid #2D3E56;
-    border-radius: 100px;
-    
-    font-family: "JetBrains Mono", monospace;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: normal;
-    
-    padding: 5px 15px;
-    box-sizing: border-box;
-  
-    display: none;
-    z-index: 20;   
-  }
-  
-  #botao-confirmar {
-    position: fixed;
-    top: calc(50% + 60px);
-    left: 50%;
-    transform: translateX(-50%);
-    
-    padding: 10px 10px;
-    height: 45px;
-    width: 150px;
-    
-    background-color: #2D3E56;
-    color: white;
-    border: 3px solid #2D3E56;
-    border-radius: 100px;
-    
-    font-family: "JetBrains Mono", monospace;
-    font-size: 20px;
-    font-weight: 400;
-    cursor: pointer;
-    
-    display: none;
-    z-index: 20;
-  }
-  
+h1 {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 48px;
+  font-weight: 700;
+  color: white;
+  -webkit-text-stroke: 3px rgb(19, 14, 63);
+  text-align: center;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+}
 
-  #cenario2 {
+p {
+  text-align: center;
+  padding-top: 50px;
+}
+
+#botao-jogar {
+  width: 250px;
+  height: 70px;
+  background-color: #2D3E56;
+  color: #FFF;
+  border: 1px solid #2D3E56;
+  border-radius: 100px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 28px;
+  font-weight: 400;
+  line-height: normal;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#botao-jogar:hover {
+  background-color: #435a75;
+  color: #e0e0e0;
+}
+
+#legenda-inicial {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 26px; /* corrigido para px */
+  color: white;
+  background: black;
+  padding: 30px 20px;
+  box-sizing: border-box;
+  z-index: 10;
+  font-family: "JetBrains Mono", monospace;
+}
+
+#cenario1 {
+  width: 100vw;
+  height: 100vh;
+  background-image: url('img/cenario1.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+}
+
+#npc1 {
+  position: absolute;
+  bottom: 10px;
+  left: 40%;
+  cursor: pointer;
+  width: 408px;
+  height: 612px;
+  flex-shrink: 0;
+  aspect-ratio: 2 / 3;
+}
+
+#caixa-dialogo {
+  display: none; /* inicialmente escondido */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 180px;
+  background-color: #ABCFE5;
+  border-top: 7px solid #2D3E56;
+  padding: 20px;
+  box-sizing: border-box;
+  z-index: 15;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 20px;
+  color: #000;
+  min-height: 180px;
+
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  display: flex; /* só aqui uma vez */
+}
+
+#texto-dialogo {
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+  max-width: 80%;
+  font-size: 20px;
+  line-height: 1.4;
+}
+
+#nome-personagem {
+  font-weight: bold;
+  color: #fff;
+  background-color: #2D3E56;
+  display: inline-block;
+  padding: 5px 10px;
+  margin-bottom: 5px;
+  font-size: 22px;
+  border-radius: 5px;
+  align-self: flex-start;
+}
+
+#nome-jogador {
+  position: fixed;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 300px;
+  height: 40px;
+  background-color: #ABCFE5;
+  color: black;
+  border: 3px solid #2D3E56;
+  border-radius: 100px;
+
+  font-family: "JetBrains Mono", monospace;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: normal;
+
+  padding: 5px 15px;
+  box-sizing: border-box;
+
+  display: none;
+  z-index: 20;
+}
+
+#botao-confirmar {
+  position: fixed;
+  top: calc(50% + 60px);
+  left: 50%;
+  transform: translateX(-50%);
+
+  padding: 10px 10px;
+  height: 45px;
+  width: 150px;
+
+  background-color: #2D3E56;
+  color: white;
+  border: 3px solid #2D3E56;
+  border-radius: 100px;
+
+  font-family: "JetBrains Mono", monospace;
+  font-size: 20px;
+  font-weight: 400;
+  cursor: pointer;
+
+  display: none;
+  z-index: 20;
+}
+
+
+#cenario2 {
   width: 100vw;
   height: 100vh;
   background-image: url('img/cenario2.png');
@@ -314,6 +314,7 @@ html, body {
     visibility: hidden;
   }
 }
+
 
 
   
