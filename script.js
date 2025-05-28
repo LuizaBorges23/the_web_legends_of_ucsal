@@ -151,3 +151,87 @@ function mostrarTelaLuta() {
   audioLuta.play();
 }
 }
+function debugIrPara(tela) {
+  // Parar animações, listeners e limpar diálogos
+  const textoElemento = document.getElementById("texto-dialogo");
+  textoElemento.textContent = "";
+  const clone = textoElemento.cloneNode(true);
+  textoElemento.parentNode.replaceChild(clone, textoElemento); // Remove eventListener de clique
+  if (intervaloTexto) clearInterval(intervaloTexto);
+  if (proximoDialogoCallback) {
+    document.removeEventListener("click", proximoDialogoCallback);
+    proximoDialogoCallback = null;
+  }
+  // Parar música, tempo, etc (se houver)
+  const audioLuta = document.getElementById("audio-luta");
+  if (audioLuta) {
+    audioLuta.pause();
+    audioLuta.currentTime = 0;
+  }
+
+  // Esconde todas as telas
+  const telas = ['tela-inicial', 'cenario1', 'sala-coordenador', 'cenario3', 'tela-luta'];
+  telas.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+  });
+
+  // Esconde elementos de NPCs e caixas de diálogo
+  ['npc1', 'npc2', 'npc3', 'caixa-dialogo', 'menu-combate', 'nome-jogador', 'botao-confirmar'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+  });
+
+  // Exibir e reiniciar a cena correspondente
+  switch (tela) {
+    case 'inicio':
+      document.getElementById('tela-inicial').style.display = 'flex';
+      break;
+
+    case 'cenario1':
+      document.getElementById('cenario1').style.display = 'block';
+      document.getElementById('npc1').style.display = 'block';
+      document.getElementById('legenda-inicial').style.display = 'block';
+      escreverTextoGradualmente(
+        "Mais um dia se inicia na Universidade Católica do Salvador...",
+        "legenda-inicial",
+        () => {
+          document.getElementById('cenario1').addEventListener("click", function cliqueContinuar() {
+            document.getElementById("legenda-inicial").style.display = "none";
+            document.getElementById("npc1").style.display = "block";
+            iniciarDialogo();
+            document.getElementById('cenario1').removeEventListener("click", cliqueContinuar);
+          });
+        }
+      );
+      break;
+
+    case 'coordenador':
+      document.getElementById('sala-coordenador').style.display = 'block';
+      document.getElementById('npc2').style.display = 'block';
+      document.getElementById('caixa-dialogo').style.display = 'flex';
+      iniciarDialogoCoordenador();
+      break;
+
+    case 'cenario3':
+      document.getElementById('cenario3').style.display = 'block';
+      document.getElementById('npc3').style.display = 'block';
+      document.getElementById('caixa-dialogo').style.display = 'flex';
+      // Reutiliza a lógica de mostrar diálogo do professor Ronnie
+      nomeJogador = nomeJogador || "Jogador"; // nome fictício se ainda não digitado
+      mostrarTelaProfessor();
+      break;
+
+    case 'luta':
+      document.getElementById('tela-luta').style.display = 'block';
+      document.getElementById('menu-combate').style.display = 'flex';
+      document.getElementById('caixa-dialogo').style.display = 'flex';
+      document.getElementById('nome-personagem').textContent = "Debug";
+      document.getElementById('texto-dialogo').textContent = "Você está testando a tela de luta.";
+      break;
+  }
+}
+function irParaCoordenador() {
+  dialogo.textContent = "Você acompanha o aluno até a sala do coordenador pedagógico, onde ele receberá o suporte necessário.";
+  botaoCoordenador.style.display = "none";
+}
