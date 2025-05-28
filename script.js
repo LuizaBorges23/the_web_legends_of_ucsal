@@ -83,36 +83,17 @@ function salvarNome() {
 }
 
 function iniciarDialogoCoordenador() {
-  document.getElementById("nome-personagem").textContent = "Coordenador";
+  document.getElementById("nome-personagem").textContent = "Coordenador Osbaldo";
+  escreverTextoGradualmente(`Oi, ${nomeJogador}, era você que estávamos aguardando!`, "texto-dialogo", () => {
+    escreverTextoGradualmente("Hackers vêm invadindo o portal do aluno, a mando do Mago da Web. Só você pode derrotá-lo.", "texto-dialogo", () => {
+      escreverTextoGradualmente("Mas tenha cuidado! Ele tem poderes inimagináveis!", "texto-dialogo", () => {
+        escreverTextoGradualmente("Você encontrará desafios ao longo do caminho, não confie em ninguém. Conto com você, herói.", "texto-dialogo", () => {
 
-  escreverTextoGradualmente(`Oi ${nomeJogador}, estive esperando por você! Precisamos da sua ajuda.`, "texto-dialogo", () => {
-    escreverTextoGradualmente(
-        "Hackers vêm invadindo o portal do aluno, a mando do Mago da Web. Só você pode derrotá-lo.",
-        "texto-dialogo",
-        () => {
-          escreverTextoGradualmente(
-              "Mas tenha cuidado! Ele tem poderes inimagináveis!",
-              "texto-dialogo",
-              () => {
-                escreverTextoGradualmente(
-                    "Você encontrará desafios ao longo do caminho, não confie em ninguém. Conto com você, herói.",
-                    "texto-dialogo",
-                    () => {
-                      // No final do diálogo com o coordenador:
-                      setTimeout(() => {
-                        mostrarTelaProfessor();
-                      }, 2000);
-                    }
-                );
-              }
-          );
-        }
-    );
+        });
+      });
+    });
   });
 }
-
-
-
 function mostrarTelaProfessor() {
   // Transição de cena
   document.getElementById("sala-coordenador").style.display = "none";
@@ -123,13 +104,8 @@ function mostrarTelaProfessor() {
 
   // Configura e exibe a caixa de diálogo PADRÃO
   const dialogo = document.getElementById("caixa-dialogo");
-  dialogo.style.display = "blox";
-  const nomePersonagem = document.getElementById("nome-personagem");
-  nomePersonagem.textContent = "Professor Ronnie";
-
-  // Opcional: manter estilo do nome igual aos outros, se quiser garantir:
-  nomePersonagem.style.backgroundColor = "#2D3E56";
-  nomePersonagem.style.color = "#fff";
+  dialogo.style.display = "flex";
+  document.getElementById("nome-personagem").textContent = "Professor Ronnie";
 
   // Texto formatado igual às outras cenas
   const mensagens = [
@@ -143,29 +119,34 @@ function mostrarTelaProfessor() {
   let index = 0;
 
   function mostrarProximaMensagem() {
+    const cenario = document.getElementById("cenario3");
+    // Remove event listener antigo (se houver)
+    cenario.onclick = null;
+  
     if (index < mensagens.length) {
       escreverTextoGradualmente(mensagens[index], "texto-dialogo", () => {
         index++;
-        setTimeout(mostrarProximaMensagem, 1000);
+        // Só adiciona o listener DEPOIS do texto ter terminado de ser escrito
+        cenario.onclick = mostrarProximaMensagem;
       });
     } else {
-      // Quando todas as mensagens forem exibidas
+      // Remove clique extra e vai para a luta
+      cenario.onclick = null;
       setTimeout(mostrarTelaLuta, 1000);
     }
-  }
+    }
 
   mostrarProximaMensagem();
 
 
-  function mostrarTelaLuta() {
-    document.getElementById("cenario3").style.display = "none";
-    document.getElementById("caixa-dialogo").style.display = "none";
+function mostrarTelaLuta() {
+  document.getElementById("cenario3").style.display = "none";
+  document.getElementById("caixa-dialogo").style.display = "none";
 
-    const telaLuta = document.getElementById("tela-luta");
-    telaLuta.style.display = "block";
+  const telaLuta = document.getElementById("tela-luta");
+  telaLuta.style.display = "block";
 
-    // Tocar música de luta (se já tiver o áudio)
-    const audioLuta = new Audio("music/battle.mp3");
-    audioLuta.play();
-  }
+  // Tocar música de luta (se já tiver o áudio)
+  const audioLuta = new Audio("music/battle.mp3");
+  audioLuta.play();
 }

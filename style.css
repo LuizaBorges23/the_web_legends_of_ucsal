@@ -263,7 +263,6 @@ p {
   z-index: 10;
 }
 
-/* Ronnie em pose de luta */
 #ronnie-lutando {
   position: absolute;
   bottom: 0;
@@ -274,7 +273,6 @@ p {
   z-index: 2;
 }
 
-/* Texto FIGHT! */
 #texto-fight {
   position: absolute;
   top: 40%;
@@ -285,11 +283,54 @@ p {
   font-weight: bold;
   text-shadow: 4px 4px 8px black;
   text-align: center;
-  background-color: rgba(255, 255, 255, 0.1); /* Fundo sutil opcional */
   padding: 10px 20px;
   border-radius: 8px;
   animation: aparecerFade 3s ease-out forwards, desaparecer 1s ease-in 7s forwards;
   z-index: 2;
+}
+
+#botoes-acao {
+  position: absolute;
+  top: 750px;
+  left: 700px;
+  display: flexbox;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 2;
+}
+
+#botoes-acao button {
+  padding: 40px 30px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #003366;
+  border: 6px solid #003366;
+  background-color: #e0ecff;
+  cursor: auto;
+}
+
+#botoes-acao button:hover {
+  background-color: #cddfff;
+}
+
+#mensagem-acao {
+  position: absolute;
+  bottom: 140px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 20px;
+  font-weight: bold;
+  background-color: rgba(255,255,255,0.8);
+  padding: 10px 20px;
+  border-radius: 8px;
+  display: none;
+  z-index: 3;
+}
+
+
+.hidden {
+  display: none !important;
+  pointer-events: none;
 }
 
 /* Animação de aparição */
@@ -314,6 +355,8 @@ p {
     visibility: hidden;
   }
 }
+
+
 
 
   

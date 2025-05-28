@@ -26,12 +26,13 @@
   </div>
 
   <div id="sala-coordenador" style="display: none; width: 100vw; height: 100vh; background: url('img/cenario2.png') no-repeat center/cover; position: relative;">
-    <img id="npc2" src="img/osbaldo(npc2).png" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); width: 400px; height: auto;">
+    <img id="npc2" src="img/osbaldo(npc2).png"/>
   </div>
 
   <div id="cenario3" style="display: none; width: 100vw; height: 100vh; background: url('img/cenario3.png') no-repeat center/cover; position: relative;">
     <img id="npc3" src="img/ronnie(npc%203).png" />
   </div>
+
 
   <!-- Tela de luta -->
   <div id="tela-luta" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: url('img/cenario3.png') no-repeat center/cover; position: relative; overflow: hidden; z-index: 9999;">
@@ -40,8 +41,28 @@
   </div>
 
 
+ 
+  
+<div id="tela-luta">
+  <img id="ronnie-lutando" src="img/ronnie_fight(npc3).png" alt="Ronnie lutando">
+  <div id="texto-fight">FIGHT!</div>
+  <div id="botoes-acao">
+    <button onclick="acaoLuta('atacar')">LUTAR</button>
+    <button onclick="acaoLuta('defender')">ITEM</button>
+    <button onclick="acaoLuta('especial')">ESPECIAL</button>
+    <button onclick="acaoLuta('fugir')">FUGIR</button>
+  </div>  
+</div>
+</div>
+
+
+
+<div id="mensagem-acao"></div>
+
+
   <audio id="audio-luta" src="music/battle.mp3"></audio>
 
   <script src="./script.js"></script>
 </body>
 </html>
+
