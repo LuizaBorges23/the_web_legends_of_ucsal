@@ -111,7 +111,7 @@ function iniciarDialogoCoordenador() {
   });
 }
 
-
+let index = 0;
 
 function mostrarTelaProfessor() {
   // Transição de cena
@@ -123,7 +123,7 @@ function mostrarTelaProfessor() {
 
   // Configura e exibe a caixa de diálogo PADRÃO
   const dialogo = document.getElementById("caixa-dialogo");
-  dialogo.style.display = "blox";
+  dialogo.style.display = "block"; 
   const nomePersonagem = document.getElementById("nome-personagem");
   nomePersonagem.textContent = "Professor Ronnie";
 
@@ -143,29 +143,68 @@ function mostrarTelaProfessor() {
   let index = 0;
 
   function mostrarProximaMensagem() {
+    const cenario = document.getElementById("cenario3");
+    // Remove event listener antigo (se houver)
+    cenario.onclick = null;
+  
     if (index < mensagens.length) {
       escreverTextoGradualmente(mensagens[index], "texto-dialogo", () => {
         index++;
-        setTimeout(mostrarProximaMensagem, 1000);
+        // Só adiciona o listener DEPOIS do texto ter terminado de ser escrito
+        cenario.onclick = mostrarProximaMensagem;
       });
     } else {
-      // Quando todas as mensagens forem exibidas
+      // Remove clique extra e vai para a luta
+      cenario.onclick = null;
       setTimeout(mostrarTelaLuta, 1000);
     }
-  }
-
+  }  
+  
   mostrarProximaMensagem();
 
 
   function mostrarTelaLuta() {
+   
     document.getElementById("cenario3").style.display = "none";
     document.getElementById("caixa-dialogo").style.display = "none";
-
+  
+   
     const telaLuta = document.getElementById("tela-luta");
     telaLuta.style.display = "block";
-
-    // Tocar música de luta (se já tiver o áudio)
-    const audioLuta = new Audio("music/battle.mp3");
+  
+    
+    const audioLuta = document.getElementById("audio-luta");
+    audioLuta.volume = 0.8;
     audioLuta.play();
+    
+    
   }
 }
+function acaoLuta(acao) {
+  const mensagem = document.getElementById("mensagem-acao");
+  mensagem.style.display = "block";
+
+  switch (acao) {
+    case "atacar":
+      mensagem.textContent = `${nomeJogador} lançou um ataque poderoso!`;
+      break;
+    case "defender":
+      mensagem.textContent = `${nomeJogador} ergueu um escudo mágico!`;
+      break;
+    case "especial":
+      mensagem.textContent = `${nomeJogador} usou um ataque especial: DOMÍNIO DE CSS!`;
+      break;
+    case "fugir":
+      mensagem.textContent = `${nomeJogador} tentou fugir da batalha!`;
+      break;
+    default:
+      mensagem.textContent = "Ação desconhecida.";
+  }
+
+  setTimeout(() => {
+    mensagem.style.display = "none";
+  }, 2000);
+}
+
+
+
