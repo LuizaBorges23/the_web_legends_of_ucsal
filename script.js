@@ -1,20 +1,34 @@
 let nomeJogador = "";
+let intervaloTexto = null;
+let proximoDialogoCallback = null;
 
 function escreverTextoGradualmente(texto, elementoId, aoTerminar) {
   const elemento = document.getElementById(elementoId);
+
+  // Cancela escrita anterior se houver
+  if (intervaloTexto) clearInterval(intervaloTexto);
+  if (proximoDialogoCallback) {
+    document.removeEventListener("click", proximoDialogoCallback);
+    proximoDialogoCallback = null;
+  }
+
   elemento.textContent = "";
   let i = 0;
 
-  const intervalo = setInterval(() => {
+  intervaloTexto = setInterval(() => {
     elemento.textContent += texto.charAt(i);
     i++;
     if (i >= texto.length) {
-      clearInterval(intervalo);
-      const continuar = () => {
-        document.removeEventListener("click", continuar);
+      clearInterval(intervaloTexto);
+      intervaloTexto = null;
+
+      // Aguarda clique para continuar
+      proximoDialogoCallback = () => {
+        document.removeEventListener("click", proximoDialogoCallback);
+        proximoDialogoCallback = null;
         if (aoTerminar) aoTerminar();
       };
-      document.addEventListener("click", continuar);
+      document.addEventListener("click", proximoDialogoCallback);
     }
   }, 40);
 }
@@ -51,35 +65,36 @@ function salvarNome() {
   const nomeInput = document.getElementById("nome-jogador").value.trim();
   if (nomeInput === "") {
     alert("Por favor, digite seu nome.");
+    if (passo === falas.length) {
+      botaoCoordenador.style.display = "inline-block";
+    }
     return;
   }
 
   nomeJogador = nomeInput;
-
+  const botaoCoordenador = document.getElementById("botaoCoordenador");
+  const dialogo = document.getElementById("texto-dialogo");
   document.getElementById("nome-jogador").style.display = "none";
   document.getElementById("botao-confirmar").style.display = "none";
 
+  
   escreverTextoGradualmente(`Certo, ${nomeJogador}, é você quem o coordenador busca. Vá imediatamente à sua sala!`, "texto-dialogo", () => {
     setTimeout(() => {
       document.getElementById("caixa-dialogo").style.display = "none";
       document.getElementById("npc1").style.display = "none";
-
-      function avancarPorEnter(event) {
-        if (event.key === "Enter") {
-          document.removeEventListener("keydown", avancarPorEnter);
-          document.getElementById("cenario1").style.display = "none";
-          document.getElementById("sala-coordenador").style.display = "block";
-          document.getElementById("npc2").style.display = "block";
-          document.getElementById("caixa-dialogo").style.display = "block";
-
-          iniciarDialogoCoordenador();
-        }
-      }
-
-      document.addEventListener("keydown", avancarPorEnter);
-      alert("Pressione Enter para continuar...");
+  
+      botaoCoordenador.style.display = "inline-block"; // Mostra o botão aqui
     }, 2000);
   });
+}
+
+function prosseguirCoordenador() {
+  document.getElementById("cenario1").style.display = "none";
+  document.getElementById("sala-coordenador").style.display = "block";
+  document.getElementById("caixa-dialogo").style.display = "flex";
+  document.getElementById("npc2").style.display = "block";
+  botaoCoordenador.style.display = "none";
+  iniciarDialogoCoordenador();
 }
 
 function iniciarDialogoCoordenador() {
