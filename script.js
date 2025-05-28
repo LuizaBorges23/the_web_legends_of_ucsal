@@ -181,6 +181,33 @@ function mostrarTelaProfessor() {
     audioLuta.play();
   }
 }
+
+function acaoLuta(acao) {
+  const mensagem = document.getElementById("mensagem-acao");
+  mensagem.style.display = "block";
+
+  switch (acao) {
+    case "atacar":
+      mensagem.textContent = `${nomeJogador} lançou um ataque poderoso!`;
+      break;
+    case "defender":
+      mensagem.textContent = `${nomeJogador} ergueu um escudo mágico!`;
+      break;
+    case "especial":
+      mensagem.textContent = `${nomeJogador} usou um ataque especial: DOMÍNIO DE CSS!`;
+      break;
+    case "fugir":
+      mensagem.textContent = `${nomeJogador} tentou fugir da batalha!`;
+      break;
+    default:
+      mensagem.textContent = "Ação desconhecida.";
+  }
+
+  setTimeout(() => {
+    mensagem.style.display = "none";
+  }, 2000);
+}
+
 function debugIrPara(tela) {
   // Parar animações, listeners e limpar diálogos
   const textoElemento = document.getElementById("texto-dialogo");
