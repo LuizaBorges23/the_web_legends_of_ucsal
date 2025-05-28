@@ -150,3 +150,4 @@ function mostrarTelaLuta() {
   const audioLuta = new Audio("music/battle.mp3");
   audioLuta.play();
 }
+}
