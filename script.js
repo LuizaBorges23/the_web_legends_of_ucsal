@@ -62,6 +62,7 @@ function iniciarDialogo() {
 }
 
 function salvarNome() {
+  const botaoCoordenador = document.getElementById("botaoCoordenador");
   const nomeInput = document.getElementById("nome-jogador").value.trim();
   if (nomeInput === "") {
     alert("Por favor, digite seu nome.");
@@ -72,7 +73,6 @@ function salvarNome() {
   }
 
   nomeJogador = nomeInput;
-  const botaoCoordenador = document.getElementById("botaoCoordenador");
   const dialogo = document.getElementById("texto-dialogo");
   document.getElementById("nome-jogador").style.display = "none";
   document.getElementById("botao-confirmar").style.display = "none";
@@ -126,48 +126,44 @@ function iniciarDialogoCoordenador() {
   });
 }
 function mostrarTelaProfessor() {
-  // Transição de cena
   document.getElementById("sala-coordenador").style.display = "none";
   document.getElementById("cenario3").style.display = "block";
-
-  // Mostra NPC
   document.getElementById("npc3").style.display = "block";
 
-  // Configura e exibe a caixa de diálogo PADRÃO
   const dialogo = document.getElementById("caixa-dialogo");
-  dialogo.style.display = "blox";
+  dialogo.style.display = "block"; 
   const nomePersonagem = document.getElementById("nome-personagem");
   nomePersonagem.textContent = "Professor Ronnie";
-
-  // Opcional: manter estilo do nome igual aos outros, se quiser garantir:
   nomePersonagem.style.backgroundColor = "#2D3E56";
   nomePersonagem.style.color = "#fff";
 
-  // Texto formatado igual às outras cenas
   const mensagens = [
     `Olá, ${nomeJogador}, vejo que você é o herói escolhido.`,
     "O Mago da Web é mais perigoso do que imaginamos...",
     "Ele controla os elementos da web como se fossem magia!",
-    "Mas você ainda não está pronto e terá que passar por um treinamento",
+    "Mas você ainda não está pronto e terá que passar por um treinamento.",
     "Você terá que aprender os *Conhecimentos da Web*"
   ];
 
   let index = 0;
 
   function mostrarProximaMensagem() {
+    const cenario = document.getElementById("cenario3");
+    cenario.onclick = null;
+
     if (index < mensagens.length) {
       escreverTextoGradualmente(mensagens[index], "texto-dialogo", () => {
         index++;
-        setTimeout(mostrarProximaMensagem, 1000);
+        cenario.onclick = mostrarProximaMensagem;
       });
     } else {
-      // Quando todas as mensagens forem exibidas
+      cenario.onclick = null;
       setTimeout(mostrarTelaLuta, 1000);
     }
   }
 
   mostrarProximaMensagem();
-
+}
 
   function mostrarTelaLuta() {
     document.getElementById("cenario3").style.display = "none";
@@ -179,8 +175,9 @@ function mostrarTelaProfessor() {
     // Tocar música de luta (se já tiver o áudio)
     const audioLuta = new Audio("music/battle.mp3");
     audioLuta.play();
+    document.getElementById("botoes-acao").style.display = "flex";
   }
-}
+
 
 function acaoLuta(acao) {
   const mensagem = document.getElementById("mensagem-acao");

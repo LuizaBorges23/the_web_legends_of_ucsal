@@ -321,12 +321,12 @@ p {
 
 #botoes-acao {
   position: absolute;
-  top: 750px;
-  left: 700px;
-  display: flexbox;
-  flex-direction: column;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
   gap: 10px;
-  z-index: 2;
+  z-index: 10000;
 }
 
 #botoes-acao button {
