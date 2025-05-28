@@ -25,10 +25,17 @@
     <button id="botao-confirmar" onclick="salvarNome()" style="display: none;">Confirmar</button>
   </div>
 
-  <div id="sala-coordenador" style="display: none; width: 100vw; height: 100vh; background: url('img/cenario2.png') no-repeat center/cover; position: relative;">
+
+  <button id="botaoCoordenador" onclick="prosseguirCoordenador()" style="position: absolute;">
+    Prosseguir para a sala do coordenador
+  </button>
+
+
+   <div id="sala-coordenador" style="display: none; width: 100vw; height: 100vh; background: url('img/cenario2.png') no-repeat center/cover; position: relative;">
     <img id="npc2" src="img/osbaldo(npc2).png"/>
   </div>
-
+ 
+ 
   <div id="cenario3" style="display: none; width: 100vw; height: 100vh; background: url('img/cenario3.png') no-repeat center/cover; position: relative;">
     <img id="npc3" src="img/ronnie(npc%203).png" />
   </div>
@@ -41,8 +48,8 @@
   </div>
 
 
- 
-  
+
+
 <div id="tela-luta">
   <img id="ronnie-lutando" src="img/ronnie_fight(npc3).png" alt="Ronnie lutando">
   <div id="texto-fight">FIGHT!</div>
@@ -61,6 +68,15 @@
 
 
   <audio id="audio-luta" src="music/battle.mp3"></audio>
+
+    
+  <div id="debug-bar">
+    <button onclick="debugIrPara('inicio')">Tela Inicial</button>
+    <button onclick="debugIrPara('cenario1')">Cenário 1</button>
+    <button onclick="debugIrPara('coordenador')">Sala Coordenador</button>
+    <button onclick="debugIrPara('cenario3')">Cenário 3</button>
+    <button onclick="debugIrPara('luta')">Tela de Luta</button>
+  </div>
 
   <script src="./script.js"></script>
 </body>
