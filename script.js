@@ -208,6 +208,7 @@ function acaoLuta(acao) {
   }, 2000);
 }
 
+
 function debugIrPara(tela) {
   // Parar animações, listeners e limpar diálogos
   const textoElemento = document.getElementById("texto-dialogo");
