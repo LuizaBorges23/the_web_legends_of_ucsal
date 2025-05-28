@@ -104,8 +104,13 @@ function mostrarTelaProfessor() {
 
   // Configura e exibe a caixa de diálogo PADRÃO
   const dialogo = document.getElementById("caixa-dialogo");
-  dialogo.style.display = "flex";
-  document.getElementById("nome-personagem").textContent = "Professor Ronnie";
+  dialogo.style.display = "blox";
+  const nomePersonagem = document.getElementById("nome-personagem");
+  nomePersonagem.textContent = "Professor Ronnie";
+
+  // Opcional: manter estilo do nome igual aos outros, se quiser garantir:
+  nomePersonagem.style.backgroundColor = "#2D3E56";
+  nomePersonagem.style.color = "#fff";
 
   // Texto formatado igual às outras cenas
   const mensagens = [
@@ -119,37 +124,31 @@ function mostrarTelaProfessor() {
   let index = 0;
 
   function mostrarProximaMensagem() {
-    const cenario = document.getElementById("cenario3");
-    // Remove event listener antigo (se houver)
-    cenario.onclick = null;
-  
     if (index < mensagens.length) {
       escreverTextoGradualmente(mensagens[index], "texto-dialogo", () => {
         index++;
-        // Só adiciona o listener DEPOIS do texto ter terminado de ser escrito
-        cenario.onclick = mostrarProximaMensagem;
+        setTimeout(mostrarProximaMensagem, 1000);
       });
     } else {
-      // Remove clique extra e vai para a luta
-      cenario.onclick = null;
+      // Quando todas as mensagens forem exibidas
       setTimeout(mostrarTelaLuta, 1000);
     }
-    }
+  }
 
   mostrarProximaMensagem();
 
 
-function mostrarTelaLuta() {
-  document.getElementById("cenario3").style.display = "none";
-  document.getElementById("caixa-dialogo").style.display = "none";
+  function mostrarTelaLuta() {
+    document.getElementById("cenario3").style.display = "none";
+    document.getElementById("caixa-dialogo").style.display = "none";
 
-  const telaLuta = document.getElementById("tela-luta");
-  telaLuta.style.display = "block";
+    const telaLuta = document.getElementById("tela-luta");
+    telaLuta.style.display = "block";
 
-  // Tocar música de luta (se já tiver o áudio)
-  const audioLuta = new Audio("music/battle.mp3");
-  audioLuta.play();
-}
+    // Tocar música de luta (se já tiver o áudio)
+    const audioLuta = new Audio("music/battle.mp3");
+    audioLuta.play();
+  }
 }
 function debugIrPara(tela) {
   // Parar animações, listeners e limpar diálogos
